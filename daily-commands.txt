@@ -1,0 +1,46 @@
+1. To see the installed docker images
+docker images
+
+[[ashish@localhost ~]$ docker images
+REPOSITORY    TAG       IMAGE ID       CREATED          SIZE
+mongo__db     latest    84da1a95d64e   22 minutes ago   540MB
+mongo         latest    0e120e3fce9a   4 days ago       449MB
+oraclelinux   7.9       bc27accc6980   11 days ago      253MB
+[ashish@localhost ~]$ 
+
+2. To see running containers
+
+[ashish@localhost ~]$ docker ps -a
+CONTAINER ID   IMAGE       COMMAND                  CREATED          STATUS          PORTS                                                      NAMES
+dfe34e3289a6   mongo__db   "docker-entrypoint.s…"   12 minutes ago   Up 12 minutes   0.0.0.0:27011->27011/tcp, :::27011->27011/tcp, 27017/tcp   mongodb
+
+3. To stop a running container
+[ashish@localhost ~]$ docker stop container_name
+[ashish@localhost ~]$ docker stop container_id
+
+4. To start a container
+[ashish@localhost ~]$ docker start container_name
+[ashish@localhost ~]$ docker start container_id
+
+5. To remove a container
+[ashish@localhost ~]$ docker rm container_name
+[ashish@localhost ~]$ docker rm container_id
+
+6. To remove an image
+[ashish@localhost ~]$ docker rmi container_name
+[ashish@localhost ~]$ docker rmi container_id
+
+7. To execute any bash / sh commands on the running container {This is useful in case of file addition / deletion /modification inside the container}
+[ashish@localhost ~]$ docker exec -it container_name /bin/bash
+[ashish@localhost ~]$ docker exec -it container_name /bin/sh
+
+Note: You might have to install VIM or NANO as editors depending on the host os of the container image
+
+8. To commit the changes on a config in the container and creating a new image out of this container
+[ashish@localhost ~]$ docker commit existing_container_name new_image_name
+
+9. To rename a container {since docker assigns default names}
+[ashish@localhost ~]$ docker existing_container_name new_container_name
+
+10.To save the image in a tar.gz format {here latest is the tag name, you can cherry pick any valid tag name}
+docker save image_name:latest | gzip > image_name_latest.tar.gz
