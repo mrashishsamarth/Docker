@@ -1,1 +1,23 @@
-Please add data here
+The default configuration ususally does not have authorization enabled, meaning once you have the container up and running, you can connect to it and access the data.Apart from the authorization, the default installation does not have any usable databases as well.
+
+The default port for mongod and mongos instances is 27017
+The default port for mongod when running with --shardsvr command-line option or the shardsvr value for the clusterRole setting in a configuration file is 27018
+The default port for mongod when running with --configsvr command-line option or the configsvr value for the clusterRole setting in a configuration file is 27019
+
+The ports can be modified.
+
+1. How to find the ip of the container:- docker inspect container_name|grep -i IPAddress
+
+[ashish@localhost ~]$ docker ps -a
+CONTAINER ID   IMAGE       COMMAND                  CREATED        STATUS          PORTS                                                      NAMES
+dfe34e3289a6   mongo__db   "docker-entrypoint.s…"   22 hours ago   Up 49 minutes   0.0.0.0:27011->27011/tcp, :::27011->27011/tcp, 27017/tcp   mongodb
+[ashish@localhost ~]$ 
+[ashish@localhost ~]$ 
+[ashish@localhost ~]$ docker inspect mongodb|grep -i IPAddress
+            "SecondaryIPAddresses": null,
+            "IPAddress": "172.17.0.2",
+                    "IPAddress": "172.17.0.2",
+[ashish@localhost ~]$ ^C
+[ashish@localhost ~]$ 
+
+By now, you have both the IP Adress and port to be used for establishing a connection to Container running Mongo DB
