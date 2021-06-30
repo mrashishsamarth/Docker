@@ -99,3 +99,29 @@ E. To verify to identify the users on the database
 	]
 }
 > 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+F. Save this modified container into an image for future use
+#1. Once the required changes are done, to save the modified container into an image run
+docker commit current_container_name new_image_name
+	
+[ashish@localhost ~]$ docker ps -a
+CONTAINER ID   IMAGE       COMMAND                  CREATED        STATUS             PORTS                                                      NAMES
+dfe34e3289a6   mongo__db   "docker-entrypoint.s…"   23 hours ago   Up About an hour   0.0.0.0:27011->27011/tcp, :::27011->27011/tcp, 27017/tcp   mongodb
+[ashish@localhost ~]$ docker commit mongodb mongo___db
+invalid reference format
+[ashish@localhost ~]$ docker commit mongodb mongo__db
+sha256:82abcf4c911ccaed9f68d33e0b6bfcaf8ac50c630edf8e6e90f4df0096b971b5
+
+
+#2. Verify the new image is created with
+docker images
+
+[ashish@localhost ~]$ docker images
+REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
+mongo__db     latest    82abcf4c911c   4 seconds ago   540MB
+mongo         latest    0e120e3fce9a   5 days ago      449MB
+oraclelinux   7.9       bc27accc6980   12 days ago     253MB
+[ashish@localhost ~]$ 
+
+#3. Now the container created with this new image has authorization enabled for atleast two users, developer and container_super_user
