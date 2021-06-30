@@ -124,4 +124,6 @@ mongo         latest    0e120e3fce9a   5 days ago      449MB
 oraclelinux   7.9       bc27accc6980   12 days ago     253MB
 [ashish@localhost ~]$ 
 
-#3. Now the container created with this new image has authorization enabled for atleast two users, developer and container_super_user
+#3. Now the container created with this new image has atleast two users which can be used for authorization (However this is not complete yet, we need to
+enable authorization in the config and then create a container using that config file or command line option of --auth)
+
