@@ -8,7 +8,8 @@ A. If you want to modify the port where Mongod is running ?
 #4 - Save the file and commit the container to create a new image with: docker commit existing_container_name new_image_name
 #5 - Now that we have the new image, Create a new container and make sure to publish the updated port# and also force mongod to use the updated port # for starting.
      : docker run -d --publish 27011:27011 new_image_name --port 27011
-#6 - Once the container is created and starts running, your connection attempt to the container ip (docker inspect container_name|grep -i IPAddress) and new container port will be successful.
+#6 - Once the container is created and starts running, your connection attempt to the container ip (docker inspect container_name|grep -i IPAddress) 
+and new container port will be successful.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 B. If you want to start a mongo shell inside the container
 #1 - Open the container shell with : docker exec -it container_name /bin/bash
