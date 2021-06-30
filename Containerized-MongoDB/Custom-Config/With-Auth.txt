@@ -54,3 +54,48 @@ D. Set up root(super user) on Mongo DB
 #5. If the command is successful, you will see following result
     Successfully added user: { "user" : "container_super_user", "roles" : [ "root" ] }
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+E. To verify to identify the users on the database
+#1. Connect to mongo shell inside the container
+#2. Type "showdbs" on the terminal to see the # of existing DBs"
+#3. Type "use admin" to select "admin" database and type the following
+#4. Type "show users" on the terminal, the result will be like the following
+
+> show users
+{
+	"_id" : "admin.container_super_user",
+	"userId" : UUID("602c2cb8-14f8-4370-ba51-a396ab2e31b6"),
+	"user" : "container_super_user",
+	"db" : "admin",
+	"roles" : [
+		{
+			"role" : "root",
+			"db" : "admin"
+		}
+	],
+	"mechanisms" : [
+		"SCRAM-SHA-1",
+		"SCRAM-SHA-256"
+	]
+}
+{
+	"_id" : "admin.developer",
+	"userId" : UUID("8fc0c01d-f947-4f2a-bc34-0c718b9ac612"),
+	"user" : "developer",
+	"db" : "admin",
+	"roles" : [
+		{
+			"role" : "userAdminAnyDatabase",
+			"db" : "admin"
+		},
+		{
+			"role" : "readWriteAnyDatabase",
+			"db" : "admin"
+		}
+	],
+	"mechanisms" : [
+		"SCRAM-SHA-1",
+		"SCRAM-SHA-256"
+	]
+}
+> 
