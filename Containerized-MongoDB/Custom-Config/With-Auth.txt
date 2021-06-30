@@ -12,9 +12,45 @@ A. If you want to modify the port where Mongod is running ?
 #6 - Once the container is created and starts running, your connection attempt to the container ip (docker inspect container_name|grep -i IPAddress) 
      and new container port will be successful.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 B. If you want to start a mongo shell inside the container
 #1 - Open the container shell with : docker exec -it container_name /bin/bash
 #2 - Usually typing "mongo" on the terminal works, but since our port is different, we have to mongo --port 27011
 #3 - This will open the mongo shell with in the container.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 C. Set up authentication on Mongo DB
+#1 - Connect to mongo shell inside the container
+#2 - Type "showdbs" on the terminal to see the # of existing DBs"
+#3 - Type "use admin" to select "admin" database and type the following
+#4 - This is the command to create a developer user with developer password and admin role on any database 
+db.createUser(
+  {
+    user: "developer",
+    pwd: "developer",
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" }, "readWriteAnyDatabase" ]
+  }
+)
+#5. If the command is successful, you will see following result
+Successfully added user: {
+	"user" : "developer",
+	"roles" : [
+		{
+			"role" : "userAdminAnyDatabase",
+			"db" : "admin"
+		},
+		"readWriteAnyDatabase"
+	]
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+D. Set up root(super user) on Mongo DB
+#1. Connect to mongo shell inside the container
+#2. Type "showdbs" on the terminal to see the # of existing DBs"
+#3. Type "use admin" to select "admin" database and type the following
+#4. This is the command to create a root / superuser with password and super user role on any database
+    db.createUser({user:"container_super_user",pwd:"container_super_user",roles:["root"]})
+#5. If the command is successful, you will see following result
+    Successfully added user: { "user" : "container_super_user", "roles" : [ "root" ] }
+
