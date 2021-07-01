@@ -28,13 +28,8 @@ C. Set up users on Mongo DB
 #2 - Type "show dbs" on the terminal to see the # of existing DBs"
 #3 - Type "use admin" to select "admin" database and type the following
 #4 - This is the command to create a developer user with developer password and admin role on any database 
-db.createUser(
-  {
-    user: "developer",
-    pwd: "developer",
-    roles: [ { role: "userAdminAnyDatabase", db: "admin" }, "readWriteAnyDatabase" ]
-  }
-)
+db.createUser({user:"developer",pwd:"developerpass",roles:[{ role: "userAdminAnyDatabase", db: "admin" }, "readWriteAnyDatabase" ]})
+
 #5. If the command is successful, you will see following result
 Successfully added user: {
 	"user" : "developer",
