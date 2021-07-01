@@ -54,6 +54,7 @@ D. Set up root(super user) on Mongo DB
     Successfully added user: { "user" : "admin", "roles" : [ "root" ] }
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 E. To verify or identify users on the database
 #1. Connect to mongo shell inside the container
 #2. Type "show dbs" on the terminal to see the # of existing DBs"
@@ -99,3 +100,15 @@ E. To verify or identify users on the database
 }
 > 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+F. To enable authorization for Mongo DB connection
+#1. Once the admin user and additional users are set up
+#2. For enabling the authorization, navigate to /etc/mongod.conf or mongod.conf.orig inside the container via
+    docker exec -it container_name /bin/bash
+#3. edit the conf file to include the following
+    security
+      authorization: enabled
+#Special note: In this file, for the paramater(  authorization) use two spaces and for the value one space( enabled)
+#4. Save the file
+#5. Stop the container and start the container again
+#6. Try connecting to the DB via compass and the user credentials, it should work.
