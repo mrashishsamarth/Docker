@@ -50,9 +50,9 @@ D. Set up root(super user) on Mongo DB
 #2. Type "show dbs" on the terminal to see the # of existing DBs"
 #3. Type "use admin" to select "admin" database and type the following
 #4. This is the command to create a root / superuser with password and super user role on any database
-    db.createUser({user:"container_super_user",pwd:"container_super_user",roles:["root"]})
+    db.createUser({user:"admin",pwd:"adminpass",roles:["root"]})
 #5. If the command is successful, you will see following result
-    Successfully added user: { "user" : "container_super_user", "roles" : [ "root" ] }
+    Successfully added user: { "user" : "admin", "roles" : [ "root" ] }
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 E. To verify to identify the users on the database
@@ -63,9 +63,9 @@ E. To verify to identify the users on the database
 
 > show users
 {
-	"_id" : "admin.container_super_user",
-	"userId" : UUID("602c2cb8-14f8-4370-ba51-a396ab2e31b6"),
-	"user" : "container_super_user",
+	"_id" : "admin.admin",
+	"userId" : UUID("09215b44-6222-493b-aaf7-cf47dabd9efd"),
+	"user" : "admin",
 	"db" : "admin",
 	"roles" : [
 		{
@@ -100,30 +100,3 @@ E. To verify to identify the users on the database
 }
 > 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-F. Save this modified container into an image for future use
-#1. Once the required changes are done, to save the modified container into an image run
-docker commit current_container_name new_image_name
-	
-[ashish@localhost ~]$ docker ps -a
-CONTAINER ID   IMAGE       COMMAND                  CREATED        STATUS             PORTS                                                      NAMES
-dfe34e3289a6   mongo__db   "docker-entrypoint.s…"   23 hours ago   Up About an hour   0.0.0.0:27011->27011/tcp, :::27011->27011/tcp, 27017/tcp   mongodb
-[ashish@localhost ~]$ docker commit mongodb mongo___db
-invalid reference format
-[ashish@localhost ~]$ docker commit mongodb mongo__db
-sha256:82abcf4c911ccaed9f68d33e0b6bfcaf8ac50c630edf8e6e90f4df0096b971b5
-
-
-#2. Verify the new image is created with
-docker images
-
-[ashish@localhost ~]$ docker images
-REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
-mongo__db     latest    82abcf4c911c   4 seconds ago   540MB
-mongo         latest    0e120e3fce9a   5 days ago      449MB
-oraclelinux   7.9       bc27accc6980   12 days ago     253MB
-[ashish@localhost ~]$ 
-
-#3. Now the container created with this new image has atleast two users which can be used for authorization (However this is not complete yet, we need to
-enable authorization in the config and then create a container using that config file or command line option of --auth)
-
