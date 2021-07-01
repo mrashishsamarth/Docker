@@ -17,9 +17,13 @@ B. If you want to start a mongo shell inside the container
 #1 - Open the container shell with : docker exec -it container_name /bin/bash
 #2 - Usually typing "mongo" on the terminal works, but since our port is different, we have to mongo --port 27011
 #3 - This will open the mongo shell with in the container.
+
+OR
+#1 - Open the container shell with : docker exec -it container_name mongo
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-C. Set up authentication on Mongo DB
+C. Set up users on Mongo DB
 #1 - Connect to mongo shell inside the container
 #2 - Type "show dbs" on the terminal to see the # of existing DBs"
 #3 - Type "use admin" to select "admin" database and type the following
@@ -55,7 +59,7 @@ D. Set up root(super user) on Mongo DB
     Successfully added user: { "user" : "admin", "roles" : [ "root" ] }
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
-E. To verify to identify the users on the database
+E. To verify or identify users on the database
 #1. Connect to mongo shell inside the container
 #2. Type "show dbs" on the terminal to see the # of existing DBs"
 #3. Type "use admin" to select "admin" database and type the following
